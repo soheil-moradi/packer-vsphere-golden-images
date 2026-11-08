@@ -1,0 +1,28 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+  identity:
+    hostname: packer-ubuntu-2404
+    username: ${build_ssh_username}
+    password: "${build_password_hash}"
+    realname: Packer Build User
+  ssh:
+    install-server: true
+    allow-pw: true
+  storage:
+    layout:
+      name: direct
+  packages:
+    - openssh-server
+    - sudo
+    - ca-certificates
+    - python3
+    - python3-apt
+  user-data:
+    users:
+      - name: ${build_ssh_username}
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /bin/bash

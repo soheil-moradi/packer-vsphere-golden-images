@@ -1,0 +1,47 @@
+name: Packer validation
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  public-safety:
+    name: Public-tree safety
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Check public tree
+        run: python -m unittest discover -s tests -v
+
+  packer:
+    name: Packer format and validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Packer
+        uses: hashicorp/setup-packer@main
+        with:
+          version: latest
+
+      - name: Initialize Packer plugins
+        run: packer init .
+
+      - name: Check Packer formatting
+        run: packer fmt -check -recursive .
+
+      - name: Validate Packer configuration
+        run: packer validate .

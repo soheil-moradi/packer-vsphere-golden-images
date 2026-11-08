@@ -1,0 +1,34 @@
+# Copy this file to a private *.pkrvars.hcl file and fill it locally.
+# Never commit the private copy. Do not use company inventory values in this example.
+
+vsphere_server    = "vcenter.example.test"
+vsphere_user      = "packer-builder@example.test"
+vsphere_password  = "set-at-runtime"
+
+vsphere_datacenter = "EXAMPLE-DATACENTER"
+vsphere_cluster    = "EXAMPLE-CLUSTER"
+vsphere_host       = null
+vsphere_datastore  = "EXAMPLE-DATASTORE"
+vsphere_network    = "EXAMPLE-BUILD-NETWORK"
+vsphere_folder     = "Templates/Packer"
+vsphere_resource_pool = null
+
+vm_version       = 19
+vm_cpus          = 2
+vm_memory_mb     = 2048
+vm_disk_size_mb  = 40960
+vm_scsi_controller = "lsilogic-sas"
+vm_network_card    = "vmxnet3"
+image_version      = "0.1.0-dev"
+
+build_ssh_username = "packer"
+# Supply build_ssh_password and build_password_hash through a local secret file
+# or PKR_VAR_* environment variables. Do not commit either value.
+
+ubuntu_iso_url      = "https://releases.ubuntu.com/24.04/ubuntu-24.04.3-live-server-amd64.iso"
+ubuntu_iso_checksum = "sha256:REPLACE_WITH_OFFICIAL_CHECKSUM"
+ubuntu_guest_os_type = "REPLACE_WITH_ESXI_SUPPORTED_UBUNTU_GUEST_ID"
+
+debian_iso_url       = "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-13.1.0-amd64-netinst.iso"
+debian_iso_checksum  = "sha512:REPLACE_WITH_OFFICIAL_CHECKSUM"
+debian_guest_os_type = "REPLACE_WITH_ESXI_SUPPORTED_DEBIAN_GUEST_ID"

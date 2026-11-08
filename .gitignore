@@ -1,0 +1,23 @@
+# Packer caches, generated artifacts, and local build variables.
+.packer_cache/
+packer_cache/
+output-*/
+artifacts/
+*.manifest.json
+*.pkrvars.hcl
+*.pkrvars.json
+!*.pkrvars.hcl.example
+
+# Local secrets and environment files.
+.env
+.env.*
+!.env.example
+
+# Python and editor files.
+__pycache__/
+*.py[cod]
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
